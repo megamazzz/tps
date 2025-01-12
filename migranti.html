@@ -40,37 +40,37 @@
 
     <script>
         function readFile(input) {
-            let file = input.files[0]; // Ottiene il file caricato dall'utente
-            let reader = new FileReader(); // Crea un oggetto FileReader per leggere il file
+            let file = input.files[0];
+            let reader = new FileReader(); 
 
-            reader.readAsText(file); // Legge il contenuto del file come testo
+            reader.readAsText(file);
             reader.onload = function() {
-                let data = reader.result; // Contiene il testo del file
-                let rows = data.split("\n"); // Divide il testo in righe
-                let table = document.getElementById("csvTable"); // Seleziona la tabella HTML
-                table.innerHTML = ""; // Pulisce la tabella
+                let data = reader.result; 
+                let rows = data.split("\n"); 
+                let table = document.getElementById("csvTable"); 
+                table.innerHTML = ""; 
 
                 for (let i = 0; i < rows.length; i++) {
-                    let row = rows[i].split(","); // Divide ogni riga in colonne
-                    let tr = document.createElement("tr"); // Crea un elemento <tr> per la riga
+                    let row = rows[i].split(","); 
+                    let tr = document.createElement("tr"); 
 
                     for (let j = 0; j < row.length; j++) {
                         let cell;
                         if (i === 0) {
-                            cell = document.createElement("th"); // Crea un elemento <th> per l'intestazione
+                            cell = document.createElement("th"); 
                         } else {
-                            cell = document.createElement("td"); // Crea un elemento <td> per le celle normali
+                            cell = document.createElement("td");
                         }
-                        cell.textContent = row[j].trim(); // Rimuove spazi extra dal contenuto della cella
-                        tr.appendChild(cell); // Aggiunge la cella alla riga
+                        cell.textContent = row[j].trim(); 
+                        tr.appendChild(cell); 
                     }
 
-                    table.appendChild(tr); // Aggiunge la riga alla tabella
+                    table.appendChild(tr); 
                 }
             };
 
             reader.onerror = function() {
-                console.error("Errore nella lettura del file:", reader.error); // Gestisce gli errori di lettura
+                console.error("Errore nella lettura del file:", reader.error); 
             };
         }
     </script>
