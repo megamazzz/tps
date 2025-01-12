@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tabella dei migranti</title>
+    <style>
+        p {
+            font-size: 14px;
+            padding-top: 14px;
+            font-weight: bold;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+            text-transform: uppercase;
+            color: red;
+            font-size: 24px;
+            padding-top: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 14px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabella dei migranti</h1>
+    <p>
+        inserire il file per visualizzare la tabella sugli sbarchi dei migranti da '97 al 2020.
+    </p>
+    <input type="file" onchange="readFile(this)" accept=".csv">
+    <table id="csvTable"></table>
+
+    <script>
+        function readFile(input) {
+            let file = input.files[0]; // Ottiene il file caricato dall'utente
+            let reader = new FileReader(); // Crea un oggetto FileReader per leggere il file
+
+            reader.readAsText(file); // Legge il contenuto del file come testo
+            reader.onload = function() {
+                let data = reader.result; // Contiene il testo del file
+                let rows = data.split("\n"); // Divide il testo in righe
+                let table = document.getElementById("csvTable"); // Seleziona la tabella HTML
+                table.innerHTML = ""; // Pulisce la tabella
+
+                for (let i = 0; i < rows.length; i++) {
+                    let row = rows[i].split(","); // Divide ogni riga in colonne
+                    let tr = document.createElement("tr"); // Crea un elemento <tr> per la riga
+
+                    for (let j = 0; j < row.length; j++) {
+                        let cell;
+                        if (i === 0) {
+                            cell = document.createElement("th"); // Crea un elemento <th> per l'intestazione
+                        } else {
+                            cell = document.createElement("td"); // Crea un elemento <td> per le celle normali
+                        }
+                        cell.textContent = row[j].trim(); // Rimuove spazi extra dal contenuto della cella
+                        tr.appendChild(cell); // Aggiunge la cella alla riga
+                    }
+
+                    table.appendChild(tr); // Aggiunge la riga alla tabella
+                }
+            };
+
+            reader.onerror = function() {
+                console.error("Errore nella lettura del file:", reader.error); // Gestisce gli errori di lettura
+            };
+        }
+    </script>
+</body>
+</html>
