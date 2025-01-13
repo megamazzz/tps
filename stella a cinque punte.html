@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>stella a cinque punte</title>
+		<style>
+			p{
+			font-size: 14px;
+			padding-top: 14px;
+			font-weight: bold;
+			color: black;
+			}
+			h1{
+			text-align: center;
+			text-transform: uppercase;
+			color: red;
+			font-size: 24px;
+			padding-top: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="300" height="300" style="border:10px solid #00ffff;">
+		</canvas>
+	</body>
+	<script>
+		//creare il canvas
+		const canvas =document.getElementById("myCanvas");
+		const ctx = canvas.getContext("2d");
+		
+		//definire un pattern
+		ctx.beginPath();
+		
+		//mettere uno start-point
+		ctx.moveTo(150,0);
+		
+		//mettere un end-point
+		ctx.lineTo(300,300);
+		ctx.lineTo(0,150);
+		ctx.lineTo(300,150);
+		ctx.lineTo(0,300);
+		ctx.lineTo(300,-300);
+		ctx.closePath();
+		ctx.fillStyle = "black";
+		ctx.fill();
+		
+		//chiusura stroke
+		ctx.stroke();
+	</script>
+</html>
