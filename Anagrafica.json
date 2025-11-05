@@ -1,0 +1,30 @@
+[
+    {
+        "nome": "christian",
+        "cognome": "mazzei",
+        "dataDiNascita": [
+            {"giorno": 18, "mese": 2, "anno": 2007}
+        ] 
+    },
+    {
+        "nome": "christian",
+        "cognome": "zurzolo",
+        "dataDiNascita": [
+            {"giorno": 16, "mese": 12, "anno": 2007}
+        ] 
+    },
+    {
+        "nome": "federico",
+        "cognome": "bellani",
+        "dataDiNascita": [
+            {"giorno": 21, "mese": 3, "anno": 2007}
+        ] 
+    },
+    {
+        "nome": "federico",
+        "cognome": "d'amato",
+        "dataDiNascita": [
+            {"giorno": 13, "mese": 6, "anno": 2007}
+        ] 
+    }
+]
