@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <body>
+    <p id="demo"></p>
+
+    <script>
+      var x = 0;
+
+      var stampa = "";
+
+      var xmlhttp = new XMLHttpRequest();
+
+      xmlhttp.open("GET", "Anagrafica.json", true);
+
+      xmlhttp.send();
+
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var myObj = JSON.parse(this.responseText);
+
+		  for (y in myObj){
+			stampa += "<h1>" + myObj[y].nome + "</h1><br>";
+			stampa += "<h1>" + myObj[y].cognome + "</h1><br>";
+
+			          for (x in myObj[y].dataDiNascita) {
+           				 stampa +=
+              				"<h3>" +
+              				myObj[y].dataDiNascita[x].giorno +
+              				": " +
+             				 myObj[y].dataDiNascita[x].mese +
+              				"</h3>" +
+              				myObj[y].dataDiNascita[x].anno +
+              				"</h3>";
+          				}
+		  }
+
+
+
+          document.getElementById("demo").innerHTML = stampa;
+        }
+      };
+    </script>
+  </body>
+</html>
