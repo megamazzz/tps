@@ -1,45 +1,107 @@
 <!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Anagrafica 1.1</title>
+  <style>
 
-<html>
-  <body>
-    <p id="demo"></p>
+body {
+  background-color: #0f172a;
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-    <script>
-      var x = 0;
+h1 {
+  color: #f97316;
+  margin-top: 20px;
+}
 
-      var stampa = "";
+.tabellaAnagrafica {
+  width: 80%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
-      var xmlhttp = new XMLHttpRequest();
+.tabellaAnagrafica th,
+.tabellaAnagrafica td {
+  padding: 12px 15px;
+  text-align: center;
+  border: 1px solid #333;
+  font-size: 14px;
+}
 
-      xmlhttp.open("GET", "Anagrafica.json", true);
+.tabellaAnagrafica th {
+  background-color: #374151;
+  color: #fff;
+  font-weight: bold;
+}
 
-      xmlhttp.send();
+.tabellaAnagrafica td {
+  background-color: #2d3748;
+  color: #e2e8f0;
+}
 
-      xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          var myObj = JSON.parse(this.responseText);
+.tabellaAnagrafica tr:nth-child(even) {
+  background-color: #3b4a61;
+}
 
-		  for (y in myObj){
-			stampa += "<h1>" + myObj[y].nome + "</h1><br>";
-			stampa += "<h1>" + myObj[y].cognome + "</h1><br>";
+.tabellaAnagrafica tr:hover {
+  background-color: #4b5563;
+}
 
-			          for (x in myObj[y].dataDiNascita) {
-           				 stampa +=
-              				"<h3>" +
-              				myObj[y].dataDiNascita[x].giorno +
-              				": " +
-             				 myObj[y].dataDiNascita[x].mese +
-              				"</h3>" +
-              				myObj[y].dataDiNascita[x].anno +
-              				"</h3>";
-          				}
-		  }
+.tabellaAnagrafica td:first-child,
+.tabellaAnagrafica th:first-child {
+  border-left: none;
+}
+
+.tabellaAnagrafica td:last-child,
+.tabellaAnagrafica th:last-child {
+  border-right: none;
+}
+
+  </style>
+</head>
+<body>
+  <h1 class="titoloPrincipale">Anagrafica 1.1</h1>
+
+  <div id="demo"></div>
+
+  <script>
+    let stampa = "";
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", "https://raw.githubusercontent.com/megamazzz/tps/refs/heads/main/Anagrafica.json", true);
+    xmlhttp.send();
+
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        let myObj = JSON.parse(this.responseText);
+        stampa = "<table class='tabellaAnagrafica'>" + "<tr>" + "<th>Nome</th>" + "<th>Cognome</th>" + "<th>DataDiNascita</th>" + "</tr>";
+        for (let y in myObj) {
+            stampa += "<tr>" +
+              "<td>" + myObj[y].nome + "</td>" +
+              "<td>" + myObj[y].cognome + "</td>" 
+              	for (let x in myObj[y].dataDiNascita) {
+           		stampa += "<td>" +
+              		myObj[y].dataDiNascita[x].giorno + "/" + 
+              		myObj[y].dataDiNascita[x].mese + "/" + 
+              		myObj[y].dataDiNascita[x].anno
+          	}
 
 
-
-          document.getElementById("demo").innerHTML = stampa;
+            "</tr>";
         }
-      };
-    </script>
-  </body>
+        stampa += "</table>";
+        document.getElementById("demo").innerHTML = stampa;
+      }
+    };
+  </script>
+</body>
 </html>
