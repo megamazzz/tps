@@ -76,6 +76,7 @@ h1 {
    <h2>Anagrafica 2.0</h2>
 
 <script>
+  
 let myObj = [];
 
 function loadDoc() {
@@ -98,7 +99,6 @@ function myFunction(xml) {
     "<th>dataDiNascita</th>";
   
   var x = xmlDoc.getElementsByTagName("Persona");
-  myObj = [];
 
   for (i = 0; i < x.length; i++) {
     let nome = x[i].getElementsByTagName("Nome")[0].childNodes[0].nodeValue;
